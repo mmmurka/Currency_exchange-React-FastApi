@@ -15,12 +15,12 @@ class CMCHTTPClient(HttpClient):
     async def get_listings(self):
         async with self._session.get('/v1/cryptocurrency/listings/latest') as response:
             result = await response.json()
-            return result['data']
+            return result["data"]
 
     async def get_currency(self, currency_id: int):
         async with self._session.get(
-                '/v2/cryptocurrency/listings/latest',
+                '/v2/cryptocurrency/quotes/latest',
                 params={'id': currency_id}
         ) as response:
             result = await response.json()
-            return result['data'][str(currency_id)]
+            return result["data"][str(currency_id)]
