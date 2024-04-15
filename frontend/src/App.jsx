@@ -16,6 +16,8 @@ function getItem(label, key, icon, children, type) {
 const App = () => {
 
   const [currencies, setCurrencies] = useState([]);
+  const [currencyId, setCurrencyId] = useState(1);
+
   const fetchCurrencies = () => {
       axios.get('http://127.0.0.1:8000/cryptocurrencies').then(r  => {
           const currenciesResponse = r.data
@@ -30,11 +32,19 @@ const App = () => {
       })
   }
 
+  const fetchCurrency = () => {
+      axios.get(`http://127.0.0.1:8000/cryptocurrencies/${currencyId}`).then(r  => {
+      })
+  }
     useEffect(() => {
         fetchCurrencies()
     }, []);
+
+    useEffect(() => {
+        fetchCurrency()
+    }, [currencyId]);
   const onClick = (e) => {
-    console.log('click ', e);
+    setCurrencyId(e.key)
   };
   return (
     <div className="flex">
