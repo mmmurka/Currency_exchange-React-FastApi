@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import axios, {Axios} from "axios";
@@ -11,15 +11,21 @@ function getItem(label, key, icon, children, type) {
     type,
   };
 }
-const items = [
-    getItem('Список криптовалют 1', 'g1', null, [getItem('Option 1', '1'),
-      getItem('Option 2', '2')], 'group'),
-];
+
 const App = () => {
 
+  const [currencies, setCurrencies] = useState([]);
   const fetchCurrencies = () => {
       axios.get('http://127.0.0.1:8000/cryptocurrencies').then(r  => {
-          console.log('response', r);
+          const currenciesResponse = r.data
+          const menuItems = [
+              getItem('Список криптовалют 1', 'g1', null, currenciesResponse.map(c => {
+                  return {label: c.name, key: c.id}
+              }),
+                  'group'
+              )
+          ]
+          setCurrencies(menuItems)
       })
   }
 
@@ -38,7 +44,7 @@ const App = () => {
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['sub1']}
       mode="inline"
-      items={items}
+      items={currencies}
     />
   );
 };
