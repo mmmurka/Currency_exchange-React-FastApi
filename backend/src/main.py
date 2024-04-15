@@ -13,9 +13,9 @@ cmc_client = CMCHTTPClient(
 
 @app.get("/cryptocurrencies")
 async def get_cryptocurrencies():
-    ...
+    return await cmc_client.get_listings()
 
 
 @app.get("/cryptocurrency/{currency_id}")
 async def get_cryptocurrency(currency_id: int):
-    ...
+    return await cmc_client.get_currency(currency_id)
