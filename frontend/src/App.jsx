@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import axios, {Axios} from "axios";
+import CryptocurrencyCard from "./CryptocurrencyCard.jsx";
 function getItem(label, key, icon, children, type) {
   return {
     key,
@@ -36,7 +37,8 @@ const App = () => {
     console.log('click ', e);
   };
   return (
-    <Menu
+    <div className="flex">
+            <Menu
       onClick={onClick}
       style={{
         width: 256,
@@ -45,7 +47,12 @@ const App = () => {
       defaultOpenKeys={['sub1']}
       mode="inline"
       items={currencies}
+      className="h-screen overflow-scroll"
     />
+        <div className="mx-auto my-auto">
+            <CryptocurrencyCard/>
+        </div>
+    </div>
   );
 };
 export default App;
