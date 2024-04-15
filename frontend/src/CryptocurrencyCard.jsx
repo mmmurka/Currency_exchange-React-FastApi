@@ -7,7 +7,7 @@ function CryptocurrencyCard() {
     <Card
       size="small"
       title={
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"/>
           <span>Bitcoin</span>
         </div>
