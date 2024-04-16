@@ -7,6 +7,7 @@ function CryptocurrencyCard(props) {
 
   const priceChangeColor = currency.quote.USD.percent_change_24h > 0 ? 'text-green-400' : 'text-red-400'
   const formattedPrice = numberWithCommas(Math.round(currency.quote.USD.price))
+
   const formattedMarketCap = numberWithCommas(Math.round(currency.quote.USD.market_cap/1_000_000_000))
   const priceChange = Math.round(100 * currency.quote.USD.percent_change_24h) / 100
 
